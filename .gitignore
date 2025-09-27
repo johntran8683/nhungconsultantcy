@@ -1,0 +1,1 @@
+node_modules/\n.next/\nout/\n.env.local\n.env.development.local\n.env.test.local\n.env.production.local\n.DS_Store\n*.log\nnpm-debug.log*\nyarn-debug.log*\nyarn-error.log*\n

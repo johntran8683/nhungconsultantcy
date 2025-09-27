@@ -1,0 +1,1 @@
+# NhungConsultancy\n\nPortfolio website for Nhung Nguyen - Senior M&E & Gender Inclusion Consultant\n\n## Tech Stack\n- Next.js 14\n- TypeScript\n- Tailwind CSS\n\n## Getting Started\n\n```bash\ncd nhung-portfolio\nnpm install\nnpm run dev\n```\n\n## Features\n- Modern responsive design\n- SEO optimized\n- Professional portfolio showcase\n- Contact form\n- Mobile-first approach
