@@ -22,10 +22,6 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
               <div className="space-y-6">
-                <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm font-medium ring-1 ring-blue-200/60">
-                  <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
-                  Available for 2025 Projects
-                </div>
                 <h1 className="text-5xl md:text-7xl font-bold leading-tight tracking-tight">
                   <span className="text-gray-900">Senior</span><br />
                   <span className="text-gradient bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
