@@ -12,14 +12,12 @@ const MetricsSection = () => {
   const [counters, setCounters] = useState({
     portfolio: 0,
     programs: 0,
-    countries: 0,
     compliance: 0,
   })
 
   const metrics = [
     { key: 'portfolio', value: 30, suffix: 'M+', label: 'Portfolio Managed' },
     { key: 'programs', value: 50, suffix: '+', label: 'Programs Evaluated' },
-    { key: 'countries', value: 15, suffix: '+', label: 'Countries of Experience' },
     { key: 'compliance', value: 100, suffix: '%', label: 'Quality Compliance Rate' },
   ]
 
@@ -29,7 +27,6 @@ const MetricsSection = () => {
         setCounters({
           portfolio: 30,
           programs: 50,
-          countries: 15,
           compliance: 100,
         })
       }, 500)
@@ -39,13 +36,13 @@ const MetricsSection = () => {
   }, [inView])
 
   return (
-    <section className="section-padding bg-white">
+    <section className="bg-white pt-10 pb-6">
       <div className="container">
-        <div ref={ref} className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div ref={ref} className="grid grid-cols-2 lg:grid-cols-3 gap-6">
           {metrics.map((metric) => (
             <div
               key={metric.key}
-              className="text-center p-8 bg-gray-50 rounded-2xl hover:shadow-lg transition-all duration-300 hover:-translate-y-2"
+              className="text-center p-6 bg-gray-50 rounded-2xl hover:shadow-lg transition-all duration-300 hover:-translate-y-2"
             >
               <div className="text-4xl font-bold text-blue-600 mb-2 animate-counter">
                 {counters[metric.key as keyof typeof counters]}{metric.suffix}

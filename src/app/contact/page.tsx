@@ -12,6 +12,8 @@ import {
   FileText
 } from 'lucide-react'
 
+import Image from 'next/image'
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -134,47 +136,76 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* Page Header */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
-        {/* Background Pattern */}
+      {/* Hero Section with Left Image */}
+      <section className="pt-28 md:pt-32 pb-16 md:pb-24 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
+        {/* Background Accents */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 left-10 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
           <div className="absolute top-40 right-10 w-72 h-72 bg-purple-600 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000"></div>
           <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-600 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-4000"></div>
         </div>
-        
+
         <div className="container relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-8">
-              <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
-              Get In Touch
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left: Image */}
+            <div className="order-1 lg:order-none">
+              <div className="relative max-w-xl mx-auto">
+                <div className="absolute -inset-4 bg-gradient-to-tr from-blue-600/20 via-purple-600/20 to-blue-800/20 rounded-3xl blur-2xl"></div>
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl ring-1 ring-black/5 bg-white">
+                  <Image
+                    src="/images/nhung-contact.png"
+                    alt="Nhung Nguyen portrait for contact page"
+                    width={1000}
+                    height={1200}
+                    sizes="(max-width: 1024px) 90vw, 42vw"
+                    priority
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              </div>
             </div>
-            
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-8">
-              <span className="text-gray-900">Let&apos;s Create</span><br />
-              <span className="text-gradient bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
-                Impact Together
-              </span>
-            </h1>
-            
-            <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-12">
-              Ready to enhance your development programs with data-driven M&E frameworks and gender-responsive approaches? 
-              Let&apos;s discuss how we can achieve measurable impact together.
-            </p>
-            
-            {/* Key Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600 mb-2">24h</div>
-                <div className="text-sm text-gray-600">Response Time</div>
+
+            {/* Right: Content */}
+            <div className="text-center lg:text-left space-y-8">
+              <div>
+                <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-6">
+                  <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
+                  Get In Touch
+                </div>
+                <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
+                  <span className="text-gray-900">Let&apos;s Create</span><br />
+                  <span className="text-gradient bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
+                    Impact Together
+                  </span>
+                </h1>
+                <p className="text-xl text-gray-600 leading-relaxed max-w-xl lg:max-w-none">
+                  Ready to enhance your development programs with data-driven M&E frameworks and gender-responsive approaches? Let&apos;s discuss how we can achieve measurable impact together.
+                </p>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-purple-600 mb-2">100%</div>
-                <div className="text-sm text-gray-600">Client Satisfaction</div>
+
+              <div className="flex flex-col sm:flex-row gap-4 sm:justify-center lg:justify-start">
+                <a href="#contact-form" className="btn btn-primary">
+                  Start a Conversation
+                </a>
+                <a href="mailto:nhungnt102@gmail.com" className="btn btn-secondary">
+                  Email Me
+                </a>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-600 mb-2">15+</div>
-                <div className="text-sm text-gray-600">Years Experience</div>
+
+              {/* Trust Indicators */}
+              <div className="grid grid-cols-3 gap-6 max-w-md sm:max-w-lg lg:max-w-none">
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-blue-600 mb-1">24h</div>
+                  <div className="text-sm text-gray-600">Response Time</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-purple-600 mb-1">100%</div>
+                  <div className="text-sm text-gray-600">Client Satisfaction</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl md:text-3xl font-bold text-green-600 mb-1">15+</div>
+                  <div className="text-sm text-gray-600">Years Experience</div>
+                </div>
               </div>
             </div>
           </div>
@@ -182,7 +213,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Information */}
-      <section className="section-padding bg-white relative">
+      <section id="contact-form" className="section-padding bg-white relative">
         <div className="container">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-gray-100 text-gray-700 text-sm font-medium mb-6">

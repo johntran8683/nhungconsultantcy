@@ -5,8 +5,14 @@ import {
   BarChart3,
   Target,
   Users as UsersIcon,
-  Settings
+  Settings,
+  Award,
+  CheckCircle,
+  Star,
+  ArrowRight
 } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export const metadata = {
   title: 'Expertise & Approach - Nhung Nguyen',
@@ -21,7 +27,8 @@ export default function ExpertisePage() {
       description: 'Data-driven decision making with robust measurement frameworks',
       color: 'from-blue-500 to-blue-600',
       bgColor: 'bg-blue-50',
-      textColor: 'text-blue-700'
+      textColor: 'text-blue-700',
+      iconBg: 'bg-blue-100'
     },
     {
       icon: Users,
@@ -29,7 +36,8 @@ export default function ExpertisePage() {
       description: 'Systematic integration of gender perspectives throughout project lifecycle',
       color: 'from-purple-500 to-purple-600',
       bgColor: 'bg-purple-50',
-      textColor: 'text-purple-700'
+      textColor: 'text-purple-700',
+      iconBg: 'bg-purple-100'
     },
     {
       icon: UsersIcon,
@@ -37,7 +45,8 @@ export default function ExpertisePage() {
       description: 'Collaborative approach with local partners and beneficiaries',
       color: 'from-green-500 to-green-600',
       bgColor: 'bg-green-50',
-      textColor: 'text-green-700'
+      textColor: 'text-green-700',
+      iconBg: 'bg-green-100'
     },
     {
       icon: Settings,
@@ -45,7 +54,8 @@ export default function ExpertisePage() {
       description: 'Empowering teams with sustainable M&E skills and systems',
       color: 'from-orange-500 to-orange-600',
       bgColor: 'bg-orange-50',
-      textColor: 'text-orange-700'
+      textColor: 'text-orange-700',
+      iconBg: 'bg-orange-100'
     }
   ]
 
@@ -159,10 +169,19 @@ export default function ExpertisePage() {
     { name: 'GIZ', description: 'Monitoring & Evaluation Advisory' },
   ]
 
+  const clientLogos: Record<string, string> = {
+    'UNOPS': '/images/logos/unops.svg',
+    'IFC': '/images/logos/ifc.svg',
+    'ADB': '/images/logos/adb.svg',
+    'UNICEF': '/images/logos/unicef.svg',
+    'World Bank': '/images/logos/worldbank.svg',
+    'GIZ': '/images/logos/giz.svg',
+  }
+
   return (
     <>
       {/* Page Header */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
+      <section className="min-h-[80vh] flex items-start lg:items-center bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 pt-4 lg:pt-6 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 left-10 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
@@ -171,37 +190,99 @@ export default function ExpertisePage() {
         </div>
         
         <div className="container relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-8">
-              <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
-              Professional Expertise
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-14 items-center">
+            {/* Left Content */}
+            <div className="space-y-8 order-2 lg:order-2">
+              <div className="space-y-6">
+                <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-medium">
+                  <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
+                  Professional Expertise
+                </div>
+                <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+                  <span className="text-gray-900">My Expertise &</span><br />
+                  <span className="text-gradient bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
+                    Approach
+                  </span>
+                </h1>
+                <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
+                  Combining systematic monitoring and evaluation with a deep commitment to gender equality and sustainable development. 
+                  My data-driven approach generates measurable impact across international development programs.
+                </p>
+                {/* Capability Badges */}
+                <div className="flex flex-wrap gap-3 pt-2" aria-label="Key capabilities">
+                  {[
+                    { label: 'M&E Frameworks', color: 'bg-blue-100 text-blue-700' },
+                    { label: 'Gender Inclusion', color: 'bg-purple-100 text-purple-700' },
+                    { label: 'Impact Measurement', color: 'bg-emerald-100 text-emerald-700' },
+                    { label: 'Capacity Building', color: 'bg-orange-100 text-orange-700' },
+                  ].map((chip) => (
+                    <span key={chip.label} className={`px-3 py-1 rounded-full text-sm font-medium ${chip.color}`}>{chip.label}</span>
+                  ))}
+                </div>
+              </div>
+              
+              {/* Buttons will be placed in second row to the right */}
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-8">
-              <span className="text-gray-900">My Expertise &</span><br />
-              <span className="text-gradient bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
-                Approach
-              </span>
-            </h1>
-            
-            <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-12">
-              Combining systematic monitoring and evaluation with a deep commitment to gender equality and sustainable development. 
-              My data-driven approach generates measurable impact across international development programs.
-            </p>
-            
-            {/* Key Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600 mb-2">15+</div>
-                <div className="text-sm text-gray-600">Years Experience</div>
+            {/* Left Professional Image (on desktop) */}
+            <div className="flex justify-center lg:justify-start order-1 lg:order-1">
+              <div className="relative -ml-2 md:-ml-4 xl:-ml-8">
+                {/* Circular portrait with gradient ring */}
+                <div className="relative w-80 h-80 md:w-[26rem] md:h-[26rem] xl:w-[28rem] xl:h-[28rem]">
+                  <div className="absolute inset-0 rounded-full p-[6px] bg-gradient-to-tr from-blue-600 via-purple-500 to-emerald-400">
+                    <div className="w-full h-full rounded-full bg-white" />
+                  </div>
+                  <div className="absolute inset-[6px] rounded-full overflow-hidden shadow-2xl">
+                    <Image
+                      src="/images/nhung-expertise.png"
+                      alt="Portrait of Nhung Nguyen"
+                      width={512}
+                      height={512}
+                      className="w-full h-full object-cover"
+                      priority
+                    />
+                    {/* Gloss overlay */}
+                    <div className="pointer-events-none absolute -top-1/4 left-0 right-0 h-1/2 bg-gradient-to-b from-white/40 to-transparent rounded-full" />
+                  </div>
+                  {/* Corner label */}
+                  <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur px-4 py-2 rounded-full shadow-md border border-gray-100">
+                    <span className="text-sm font-semibold text-gray-800">Available for 2025 Projects</span>
+                  </div>
+                </div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-purple-600 mb-2">50+</div>
-                <div className="text-sm text-gray-600">Projects Led</div>
+            </div>
+          </div>
+
+          {/* Second Row: stats left, buttons right */}
+          <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 items-center">
+            {/* Stats Left */}
+            <div className="order-2 lg:order-1 mt-6 lg:mt-0">
+              <div className="flex items-center gap-8">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-gray-900">15+</div>
+                  <div className="text-sm text-gray-600">Years Experience</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-gray-900">50+</div>
+                  <div className="text-sm text-gray-600">Projects Led</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-gray-900">100%</div>
+                  <div className="text-sm text-gray-600">Success Rate</div>
+                </div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-600 mb-2">100%</div>
-                <div className="text-sm text-gray-600">Success Rate</div>
+            </div>
+
+            {/* Buttons Right */}
+            <div className="order-1 lg:order-2 flex justify-start lg:justify-end">
+              <div className="flex flex-col sm:flex-row gap-4" role="group" aria-label="Primary actions">
+                <Link href="/contact" className="btn btn-primary group">
+                  Start a Project 
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link href="/portfolio" className="btn btn-secondary">
+                  View My Work
+                </Link>
               </div>
             </div>
           </div>
@@ -230,13 +311,13 @@ export default function ExpertisePage() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {principles.map((principle, index) => (
-                <div key={index} className="group">
-                  <div className={`text-center p-8 ${principle.bgColor} rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100`}>
+                <div key={index} className="group h-full">
+                  <div className={`text-center p-8 ${principle.bgColor} rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 h-full flex flex-col`}>
                     <div className={`w-20 h-20 ${principle.iconBg} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform`}>
                       <principle.icon className={`h-10 w-10 ${principle.color.replace('from-', 'text-').replace(' to-', '-')}`} />
                     </div>
                     <h3 className={`text-xl font-semibold ${principle.textColor} mb-4`}>{principle.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{principle.description}</p>
+                    <p className="text-gray-600 leading-relaxed flex-grow">{principle.description}</p>
                   </div>
                 </div>
               ))}
@@ -263,8 +344,8 @@ export default function ExpertisePage() {
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {expertiseAreas.map((area, index) => (
-              <div key={index} className="group">
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
+              <div key={index} className="group h-full">
+                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 h-full flex flex-col">
                   <div className="flex items-start mb-6">
                     <div className={`w-16 h-16 bg-gradient-to-br ${area.color} rounded-2xl flex items-center justify-center mr-6 group-hover:scale-110 transition-transform`}>
                       <area.icon className="h-8 w-8 text-white" />
@@ -275,7 +356,7 @@ export default function ExpertisePage() {
                     </div>
                   </div>
                   
-                  <div className="space-y-4">
+                  <div className="space-y-4 flex-grow">
                     <h4 className="font-semibold text-gray-800 mb-3">Key Capabilities:</h4>
                     <div className="grid grid-cols-1 gap-3">
                       {area.skills.map((skill, skillIndex) => (
@@ -323,15 +404,15 @@ export default function ExpertisePage() {
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Technical Skills */}
-              <div className="group">
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-8 rounded-2xl border border-blue-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div className="group h-full">
+                <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-8 rounded-2xl border border-blue-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 h-full flex flex-col">
                   <div className="text-center mb-6">
                     <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <BarChart3 className="h-8 w-8 text-white" />
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900">Technical Skills</h3>
                   </div>
-                  <div className="space-y-6">
+                  <div className="space-y-6 flex-grow">
                     {skills.slice(0, 4).map((skill, index) => (
                       <div key={index} className="group/skill">
                         <div className="flex justify-between mb-2">
@@ -351,15 +432,15 @@ export default function ExpertisePage() {
               </div>
 
               {/* Industry Knowledge */}
-              <div className="group">
-                <div className="bg-gradient-to-br from-purple-50 to-pink-100 p-8 rounded-2xl border border-purple-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div className="group h-full">
+                <div className="bg-gradient-to-br from-purple-50 to-pink-100 p-8 rounded-2xl border border-purple-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 h-full flex flex-col">
                   <div className="text-center mb-6">
                     <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <Users className="h-8 w-8 text-white" />
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900">Industry Knowledge</h3>
                   </div>
-                  <div className="space-y-6">
+                  <div className="space-y-6 flex-grow">
                     {skills.slice(4).map((skill, index) => (
                       <div key={index} className="group/skill">
                         <div className="flex justify-between mb-2">
@@ -379,15 +460,15 @@ export default function ExpertisePage() {
               </div>
 
               {/* Languages */}
-              <div className="group">
-                <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-8 rounded-2xl border border-green-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <div className="group h-full">
+                <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-8 rounded-2xl border border-green-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 h-full flex flex-col">
                   <div className="text-center mb-6">
                     <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <Users className="h-8 w-8 text-white" />
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900">Languages</h3>
                   </div>
-                  <div className="space-y-4">
+                  <div className="space-y-4 flex-grow">
                     <div className="text-center p-4 bg-white rounded-xl">
                       <div className="text-2xl font-bold text-green-600 mb-2">English</div>
                       <div className="text-sm text-gray-600 mb-2">Advanced</div>
@@ -479,8 +560,14 @@ export default function ExpertisePage() {
             {clients.map((client, index) => (
               <div key={index} className="group">
                 <div className="text-center p-8 bg-white rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
-                  <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform shadow-lg">
-                    <Target className="h-10 w-10 text-white" />
+                  <div className="mx-auto mb-6 w-40 h-16 flex items-center justify-center">
+                    <Image
+                      src={clientLogos[client.name] || '/images/logos/placeholder.svg'}
+                      alt={`${client.name} logo`}
+                      width={200}
+                      height={80}
+                      className="max-h-16 w-auto object-contain transition duration-300"
+                    />
                   </div>
                   <h4 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">{client.name}</h4>
                   <p className="text-gray-600 leading-relaxed">{client.description}</p>

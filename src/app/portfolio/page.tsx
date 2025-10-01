@@ -186,7 +186,10 @@ export default function PortfolioPage() {
         </div>
         
         <div className="container relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            {/* Left column: keep existing content as-is (centered copy) */}
+            <div>
+              <div className="max-w-4xl mx-auto text-center">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-medium mb-8">
               <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
               Portfolio & Impact
@@ -223,6 +226,29 @@ export default function PortfolioPage() {
                 <div className="text-sm text-gray-600">Client Satisfaction</div>
               </div>
             </div>
+              </div>
+            </div>
+
+            {/* Right column: editorial framed image */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="relative w-72 sm:w-80 md:w-96 aspect-[4/5] bg-white rounded-[20px] border border-gray-200 shadow-2xl overflow-hidden motion-safe:transition-transform motion-safe:duration-300 motion-safe:will-change-transform hover:-translate-y-1">
+                <div className="absolute inset-0">
+                  {/* decorative inner frame */}
+                  <div className="absolute inset-0 m-3 rounded-[16px] bg-gray-50"></div>
+                </div>
+                <div className="absolute inset-0 m-3 rounded-[16px] overflow-hidden">
+                  <img
+                    src="/images/nhung-workexperience.jpg"
+                    alt="Nhung Nguyen presenting portfolio work highlights"
+                    className="w-full h-full object-cover"
+                    loading="eager"
+                  />
+                  {/* soft gloss */}
+                  <div className="pointer-events-none absolute -top-1/3 left-0 right-0 h-1/2 bg-gradient-to-b from-white/35 to-transparent" />
+                </div>
+                
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -245,8 +271,8 @@ export default function PortfolioPage() {
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {featuredProjects.map((project, index) => (
-              <div key={index} className="group">
-                <div className={`bg-gradient-to-br ${project.bgColor} rounded-2xl p-8 border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2`}>
+              <div key={index} className="group h-full">
+                <div className={`bg-gradient-to-br ${project.bgColor} rounded-2xl p-8 border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-full flex flex-col`}>
                   {/* Project Header */}
                   <div className="flex items-start justify-between mb-8">
                     <div className="flex items-center">
@@ -266,7 +292,7 @@ export default function PortfolioPage() {
                   </div>
                   
                   {/* Project Content */}
-                  <div className="space-y-6">
+                  <div className="space-y-6 flex-grow">
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
                         <div className={`w-2 h-2 bg-gradient-to-r ${project.color} rounded-full mr-3`}></div>
@@ -341,8 +367,8 @@ export default function PortfolioPage() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {publications.map((publication, index) => (
-              <div key={index} className="group">
-                <div className={`bg-white rounded-2xl p-8 border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 ${publication.featured ? 'border-2 border-blue-500 bg-gradient-to-br from-blue-50 to-blue-100' : ''}`}>
+              <div key={index} className="group h-full">
+                <div className={`bg-white rounded-2xl p-8 border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 ${publication.featured ? 'border-2 border-blue-500 bg-gradient-to-br from-blue-50 to-blue-100' : ''} h-full flex flex-col`}>
                   {/* Publication Header */}
                   <div className="flex items-start justify-between mb-6">
                     <div className="flex items-center">
@@ -365,7 +391,7 @@ export default function PortfolioPage() {
                   </div>
                   
                   {/* Publication Content */}
-                  <div className="space-y-4">
+                  <div className="space-y-4 flex-grow">
                     <h3 className="text-lg font-semibold text-gray-900 group-hover:text-gray-800 transition-colors leading-tight">
                       {publication.title}
                     </h3>

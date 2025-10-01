@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Building, Globe, TrendingUp, Heart, GraduationCap, Users } from 'lucide-react'
+import { ArrowRight, Building, Globe, TrendingUp, Heart, GraduationCap, Users, Target, BarChart3, Award, CheckCircle, MapPin, Clock, Star, Shield, Zap } from 'lucide-react'
 import MetricsSection from '@/components/MetricsSection'
 import TestimonialSection from '@/components/TestimonialSection'
 
@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 pt-20 relative overflow-hidden">
+      <section className="min-h-[80vh] flex items-start lg:items-center bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 pt-12 md:pt-16 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 left-10 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
@@ -22,18 +22,18 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
               <div className="space-y-6">
-                <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-medium">
+                <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 text-blue-700 text-sm font-medium ring-1 ring-blue-200/60">
                   <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
                   Available for 2025 Projects
                 </div>
-                <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+                <h1 className="text-5xl md:text-7xl font-bold leading-tight tracking-tight">
                   <span className="text-gray-900">Senior</span><br />
                   <span className="text-gradient bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 bg-clip-text text-transparent">
                     M&E & Gender Inclusion
                   </span><br />
                   <span className="text-gray-900">Consultant</span>
                 </h1>
-                <p className="text-xl text-gray-600 leading-relaxed max-w-lg">
+                <p className="text-xl text-gray-600 leading-relaxed max-w-xl">
                   Enhancing program effectiveness for international development organizations through systematic monitoring, evaluation, and gender-responsive programming.
                 </p>
               </div>
@@ -47,55 +47,77 @@ export default function HomePage() {
                   Start a Project
                 </Link>
               </div>
-              
-              {/* Trust Indicators */}
-              <div className="flex items-center space-x-8 pt-8 border-t border-gray-200">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">15+</div>
-                  <div className="text-sm text-gray-600">Years Experience</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">50+</div>
-                  <div className="text-sm text-gray-600">Projects Led</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">15+</div>
-                  <div className="text-sm text-gray-600">Countries</div>
-                </div>
-              </div>
             </div>
             
             <div className="flex justify-center lg:justify-end">
               <div className="relative">
-                <div className="w-96 h-96 rounded-3xl overflow-hidden border-4 border-white shadow-2xl relative">
-                  {/* Professional Headshot Image */}
-        <Image
-                    src="/images/portfolio.png"
-                    alt="Nhung Nguyen - Senior M&E & Gender Inclusion Consultant"
-                    width={384}
-                    height={384}
-                    className="w-full h-full object-cover"
-          priority
-        />
-                  
-                  {/* Professional Badge Overlay */}
-                  <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg">
-                    <h3 className="text-lg font-bold text-gray-900 mb-1">Nhung Nguyen</h3>
-                    <p className="text-sm text-gray-600 mb-2">Senior M&E & Gender Inclusion Consultant</p>
-                    <div className="flex items-center justify-center space-x-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                {/* Framed Portrait with subtle gradient ring */}
+                <div className="relative w-96 h-96">
+                  <div className="absolute inset-0 rounded-3xl p-[6px] bg-gradient-to-tr from-blue-600 via-purple-500 to-emerald-400">
+                    <div className="w-full h-full rounded-3xl bg-white"></div>
+                  </div>
+                  <div className="absolute inset-[6px] rounded-3xl overflow-hidden border border-gray-100 shadow-2xl">
+                    {/* Professional Headshot Image */}
+                    <Image
+                      src="/images/Nhung-portfolio.png"
+                      alt="Nhung Nguyen - Senior M&E & Gender Inclusion Consultant"
+                      width={512}
+                      height={512}
+                      className="w-full h-full object-cover object-center brightness-105 contrast-110"
+                      priority
+                      quality={95}
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                    />
+                    
+                    {/* Professional Badge Overlay */}
+                    <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg">
+                      <h3 className="text-lg font-bold text-gray-900 mb-1">Nhung Nguyen</h3>
+                      <p className="text-sm text-gray-600 mb-2">Senior M&E & Gender Inclusion Consultant</p>
+                      <div className="flex items-center justify-center space-x-2">
+                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                
-                {/* Floating Elements */}
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
-                  <div className="w-3 h-3 bg-white rounded-full"></div>
+
+                {/* Subtle floating accents (no animations for professional tone) */}
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center shadow-lg opacity-90">
+                  <CheckCircle className="w-4 h-4 text-white" />
                 </div>
-                <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center shadow-lg">
-                  <div className="text-white text-lg">✓</div>
+                <div className="absolute top-1/2 -right-6 w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center shadow-lg opacity-90">
+                  <Target className="w-5 h-5 text-white" />
+                </div>
+
+                {/* Stats under image in a clean card, aligned with buttons */}
+                <div className="mt-6 lg:mt-8">
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl border border-gray-100 shadow-sm px-6 py-4">
+                    <div className="grid grid-cols-3 gap-4">
+                      <div className="text-center group">
+                        <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2 group-hover:bg-blue-200 transition-colors">
+                          <Award className="w-5 h-5 text-blue-600" />
+                        </div>
+                        <div className="text-xl font-bold text-gray-900">15+</div>
+                        <div className="text-xs text-gray-600">Years Experience</div>
+                      </div>
+                      <div className="text-center group">
+                        <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2 group-hover:bg-green-200 transition-colors">
+                          <BarChart3 className="w-5 h-5 text-green-600" />
+                        </div>
+                        <div className="text-xl font-bold text-gray-900">50+</div>
+                        <div className="text-xs text-gray-600">Projects Led</div>
+                      </div>
+                      <div className="text-center group">
+                        <div className="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2 group-hover:bg-purple-200 transition-colors">
+                          <MapPin className="w-5 h-5 text-purple-600" />
+                        </div>
+                        <div className="text-xl font-bold text-gray-900">15+</div>
+                        <div className="text-xs text-gray-600">Countries</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -131,16 +153,16 @@ export default function HomePage() {
                 </p>
                 
                 <div className="flex flex-wrap gap-4 pt-4">
-                  <div className="flex items-center space-x-2 px-4 py-2 bg-gray-50 rounded-full">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <div className="flex items-center space-x-2 px-4 py-2 bg-gray-50 rounded-full hover:bg-green-50 transition-colors">
+                    <Users className="w-4 h-4 text-green-600" />
                     <span className="text-sm font-medium text-gray-700">Gender Expert</span>
                   </div>
-                  <div className="flex items-center space-x-2 px-4 py-2 bg-gray-50 rounded-full">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <div className="flex items-center space-x-2 px-4 py-2 bg-gray-50 rounded-full hover:bg-blue-50 transition-colors">
+                    <BarChart3 className="w-4 h-4 text-blue-600" />
                     <span className="text-sm font-medium text-gray-700">M&E Specialist</span>
                   </div>
-                  <div className="flex items-center space-x-2 px-4 py-2 bg-gray-50 rounded-full">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                  <div className="flex items-center space-x-2 px-4 py-2 bg-gray-50 rounded-full hover:bg-purple-50 transition-colors">
+                    <Globe className="w-4 h-4 text-purple-600" />
                     <span className="text-sm font-medium text-gray-700">International Consultant</span>
                   </div>
                 </div>
@@ -151,7 +173,7 @@ export default function HomePage() {
                   <div className="space-y-6">
                     <div className="flex items-center space-x-4">
                       <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
-                        <div className="text-white text-xl">🎯</div>
+                        <Target className="w-6 h-6 text-white" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900">Mission-Driven</h3>
@@ -161,7 +183,7 @@ export default function HomePage() {
                     
                     <div className="flex items-center space-x-4">
                       <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center">
-                        <div className="text-white text-xl">📊</div>
+                        <BarChart3 className="w-6 h-6 text-white" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900">Data-Driven</h3>
@@ -171,7 +193,7 @@ export default function HomePage() {
                     
                     <div className="flex items-center space-x-4">
                       <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center">
-                        <div className="text-white text-xl">🌍</div>
+                        <Globe className="w-6 h-6 text-white" />
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900">Global Reach</h3>
@@ -203,83 +225,108 @@ export default function HomePage() {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            <div className="group">
-              <div className="flex flex-col items-center p-8 bg-white rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Building className="h-8 w-8 text-white" />
+            <div className="group h-full">
+              <div className="p-6 md:p-7 bg-white rounded-2xl border border-gray-200/60 hover:border-gray-300 hover:shadow-md transition-all duration-300 h-full flex flex-col items-center justify-center text-center">
+                <div className="w-full h-12 md:h-14 flex items-center justify-center mb-3 md:mb-4">
+                  <Image src="/images/logos/unops.svg" alt="UNOPS logo" width={160} height={56} className="max-h-12 md:max-h-14 max-w-[140px] w-auto object-contain" />
                 </div>
-                <span className="font-semibold text-gray-800 text-center">UNOPS</span>
-                <span className="text-xs text-gray-500 text-center mt-1">Energy Transition</span>
+                <div>
+                  <div className="text-sm md:text-base font-semibold text-gray-900 leading-none">UNOPS</div>
+                  <div className="text-[11px] md:text-sm text-gray-500 leading-snug">Energy Transition</div>
+                </div>
               </div>
             </div>
-            
-            <div className="group">
-              <div className="flex flex-col items-center p-8 bg-white rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Globe className="h-8 w-8 text-white" />
+
+            <div className="group h-full">
+              <div className="p-6 md:p-7 bg-white rounded-2xl border border-gray-200/60 hover:border-gray-300 hover:shadow-md transition-all duration-300 h-full flex flex-col items-center justify-center text-center">
+                <div className="w-full h-12 md:h-14 flex items-center justify-center mb-3 md:mb-4">
+                  <Image src="/images/logos/ifc.svg" alt="IFC logo" width={160} height={56} className="max-h-12 md:max-h-14 max-w-[140px] w-auto object-contain" />
                 </div>
-                <span className="font-semibold text-gray-800 text-center">IFC</span>
-                <span className="text-xs text-gray-500 text-center mt-1">Gender Inclusion</span>
+                <div>
+                  <div className="text-sm md:text-base font-semibold text-gray-900 leading-none">IFC</div>
+                  <div className="text-[11px] md:text-sm text-gray-500 leading-snug">Gender Inclusion</div>
+                </div>
               </div>
             </div>
-            
-            <div className="group">
-              <div className="flex flex-col items-center p-8 bg-white rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <TrendingUp className="h-8 w-8 text-white" />
+
+            <div className="group h-full">
+              <div className="p-6 md:p-7 bg-white rounded-2xl border border-gray-200/60 hover:border-gray-300 hover:shadow-md transition-all duration-300 h-full flex flex-col items-center justify-center text-center">
+                <div className="w-full h-12 md:h-14 flex items-center justify-center mb-3 md:mb-4">
+                  <Image src="/images/logos/adb.svg" alt="ADB logo" width={160} height={56} className="max-h-12 md:max-h-14 max-w-[140px] w-auto object-contain" />
                 </div>
-                <span className="font-semibold text-gray-800 text-center">ADB</span>
-                <span className="text-xs text-gray-500 text-center mt-1">Private Sector</span>
+                <div>
+                  <div className="text-sm md:text-base font-semibold text-gray-900 leading-none">ADB</div>
+                  <div className="text-[11px] md:text-sm text-gray-500 leading-snug">Private Sector Development</div>
+                </div>
               </div>
             </div>
-            
-            <div className="group">
-              <div className="flex flex-col items-center p-8 bg-white rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
-                <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Heart className="h-8 w-8 text-white" />
+
+            <div className="group h-full">
+              <div className="p-6 md:p-7 bg-white rounded-2xl border border-gray-200/60 hover:border-gray-300 hover:shadow-md transition-all duration-300 h-full flex flex-col items-center justify-center text-center">
+                <div className="w-full h-12 md:h-14 flex items-center justify-center mb-3 md:mb-4">
+                  <Image src="/images/logos/unicef.svg" alt="UNICEF logo" width={160} height={56} className="max-h-12 md:max-h-14 max-w-[140px] w-auto object-contain" />
                 </div>
-                <span className="font-semibold text-gray-800 text-center">UNICEF</span>
-                <span className="text-xs text-gray-500 text-center mt-1">Child Welfare</span>
+                <div>
+                  <div className="text-sm md:text-base font-semibold text-gray-900 leading-none">UNICEF</div>
+                  <div className="text-[11px] md:text-sm text-gray-500 leading-snug">Child Welfare</div>
+                </div>
               </div>
             </div>
-            
-            <div className="group">
-              <div className="flex flex-col items-center p-8 bg-white rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
-                <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <GraduationCap className="h-8 w-8 text-white" />
+
+            <div className="group h-full">
+              <div className="p-6 md:p-7 bg-white rounded-2xl border border-gray-200/60 hover:border-gray-300 hover:shadow-md transition-all duration-300 h-full flex flex-col items-center justify-center text-center">
+                <div className="w-full h-12 md:h-14 flex items-center justify-center mb-3 md:mb-4">
+                  <Image src="/images/logos/worldbank.svg" alt="World Bank logo" width={160} height={56} className="max-h-12 md:max-h-14 max-w-[140px] w-auto object-contain" />
                 </div>
-                <span className="font-semibold text-gray-800 text-center">World Bank</span>
-                <span className="text-xs text-gray-500 text-center mt-1">Development</span>
+                <div>
+                  <div className="text-sm md:text-base font-semibold text-gray-900 leading-none">World Bank</div>
+                  <div className="text-[11px] md:text-sm text-gray-500 leading-snug">Development Finance</div>
+                </div>
               </div>
             </div>
-            
-            <div className="group">
-              <div className="flex flex-col items-center p-8 bg-white rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
-                <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Users className="h-8 w-8 text-white" />
+
+            <div className="group h-full">
+              <div className="p-6 md:p-7 bg-white rounded-2xl border border-gray-200/60 hover:border-gray-300 hover:shadow-md transition-all duration-300 h-full flex flex-col items-center justify-center text-center">
+                <div className="w-full h-12 md:h-14 flex items-center justify-center mb-3 md:mb-4">
+                  <Image src="/images/logos/giz.svg" alt="GIZ logo" width={160} height={56} className="max-h-12 md:max-h-14 max-w-[140px] w-auto object-contain" />
                 </div>
-                <span className="font-semibold text-gray-800 text-center">GIZ</span>
-                <span className="text-xs text-gray-500 text-center mt-1">Cooperation</span>
+                <div>
+                  <div className="text-sm md:text-base font-semibold text-gray-900 leading-none">GIZ</div>
+                  <div className="text-[11px] md:text-sm text-gray-500 leading-snug">International Cooperation</div>
+                </div>
               </div>
             </div>
           </div>
           
           {/* Stats Bar */}
-          <div className="mt-16 bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              <div>
+          <div className="mt-16 bg-white rounded-2xl p-8 shadow-lg border border-gray-100 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-50/30 via-purple-50/30 to-green-50/30 opacity-50"></div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center relative z-10">
+              <div className="group">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-blue-200 transition-colors">
+                  <TrendingUp className="w-8 h-8 text-blue-600" />
+                </div>
                 <div className="text-3xl font-bold text-blue-600 mb-2">$30M+</div>
                 <div className="text-sm text-gray-600">Portfolio Value</div>
               </div>
-              <div>
+              <div className="group">
+                <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-purple-200 transition-colors">
+                  <BarChart3 className="w-8 h-8 text-purple-600" />
+                </div>
                 <div className="text-3xl font-bold text-purple-600 mb-2">50+</div>
                 <div className="text-sm text-gray-600">Projects Led</div>
               </div>
-              <div>
+              <div className="group">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-colors">
+                  <MapPin className="w-8 h-8 text-green-600" />
+                </div>
                 <div className="text-3xl font-bold text-green-600 mb-2">15+</div>
                 <div className="text-sm text-gray-600">Countries</div>
               </div>
-              <div>
+              <div className="group">
+                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-200 transition-colors">
+                  <Star className="w-8 h-8 text-orange-600" />
+                </div>
                 <div className="text-3xl font-bold text-orange-600 mb-2">100%</div>
                 <div className="text-sm text-gray-600">Success Rate</div>
               </div>
@@ -327,15 +374,24 @@ export default function HomePage() {
             
             {/* Trust Indicators */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto">
-              <div className="text-center">
+              <div className="text-center group">
+                <div className="w-16 h-16 bg-yellow-300/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-yellow-300/30 transition-colors">
+                  <Clock className="w-8 h-8 text-yellow-300" />
+                </div>
                 <div className="text-3xl font-bold text-yellow-300 mb-2">24h</div>
                 <div className="text-blue-100 text-sm">Response Time</div>
               </div>
-              <div className="text-center">
+              <div className="text-center group">
+                <div className="w-16 h-16 bg-yellow-300/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-yellow-300/30 transition-colors">
+                  <Star className="w-8 h-8 text-yellow-300" />
+                </div>
                 <div className="text-3xl font-bold text-yellow-300 mb-2">100%</div>
                 <div className="text-blue-100 text-sm">Client Satisfaction</div>
               </div>
-              <div className="text-center">
+              <div className="text-center group">
+                <div className="w-16 h-16 bg-yellow-300/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-yellow-300/30 transition-colors">
+                  <Award className="w-8 h-8 text-yellow-300" />
+                </div>
                 <div className="text-3xl font-bold text-yellow-300 mb-2">15+</div>
                 <div className="text-blue-100 text-sm">Years Experience</div>
               </div>
