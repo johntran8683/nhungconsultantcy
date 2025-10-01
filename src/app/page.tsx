@@ -228,7 +228,6 @@ export default function HomePage() {
                 </div>
                 <div>
                   <div className="text-sm md:text-base font-semibold text-gray-900 leading-none">UNOPS</div>
-                  <div className="text-[11px] md:text-sm text-gray-500 leading-snug">Energy Transition</div>
                 </div>
               </div>
             </div>
@@ -240,7 +239,6 @@ export default function HomePage() {
                 </div>
                 <div>
                   <div className="text-sm md:text-base font-semibold text-gray-900 leading-none">IFC</div>
-                  <div className="text-[11px] md:text-sm text-gray-500 leading-snug">Gender Inclusion</div>
                 </div>
               </div>
             </div>
@@ -252,7 +250,6 @@ export default function HomePage() {
                 </div>
                 <div>
                   <div className="text-sm md:text-base font-semibold text-gray-900 leading-none">ADB</div>
-                  <div className="text-[11px] md:text-sm text-gray-500 leading-snug">Private Sector Development</div>
                 </div>
               </div>
             </div>
@@ -264,7 +261,6 @@ export default function HomePage() {
                 </div>
                 <div>
                   <div className="text-sm md:text-base font-semibold text-gray-900 leading-none">UNICEF</div>
-                  <div className="text-[11px] md:text-sm text-gray-500 leading-snug">Child Welfare</div>
                 </div>
               </div>
             </div>
@@ -276,7 +272,6 @@ export default function HomePage() {
                 </div>
                 <div>
                   <div className="text-sm md:text-base font-semibold text-gray-900 leading-none">World Bank</div>
-                  <div className="text-[11px] md:text-sm text-gray-500 leading-snug">Development Finance</div>
                 </div>
               </div>
             </div>
@@ -288,7 +283,6 @@ export default function HomePage() {
                 </div>
                 <div>
                   <div className="text-sm md:text-base font-semibold text-gray-900 leading-none">GIZ</div>
-                  <div className="text-[11px] md:text-sm text-gray-500 leading-snug">International Cooperation</div>
                 </div>
               </div>
             </div>
