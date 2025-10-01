@@ -244,10 +244,6 @@ export default function ExpertisePage() {
                     {/* Gloss overlay */}
                     <div className="pointer-events-none absolute -top-1/4 left-0 right-0 h-1/2 bg-gradient-to-b from-white/40 to-transparent rounded-full" />
                   </div>
-                  {/* Corner label */}
-                  <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur px-4 py-2 rounded-full shadow-md border border-gray-100">
-                    <span className="text-sm font-semibold text-gray-800">Available for 2025 Projects</span>
-                  </div>
                 </div>
               </div>
             </div>
