@@ -46,7 +46,7 @@ export default function PortfolioPage() {
       title: 'Pacific Private Sector Development Initiative',
       client: 'Asian Development Bank',
       duration: 'August 2024 - Present',
-      challenge: 'Lead multiple evaluations of women&apos;s economic empowerment initiatives across 14 Pacific countries for an 18-year, $88M technical assistance program.',
+      challenge: 'Lead multiple evaluations of women\'s economic empowerment initiatives across 14 Pacific countries for an 18-year, $88M technical assistance program.',
       role: [
         'Developed comprehensive evaluation tools and methodologies',
         'Collected and analyzed data from multiple Pacific countries',
@@ -55,7 +55,7 @@ export default function PortfolioPage() {
       ],
       impact: [
         'Informed strategic decisions for PSDI Phase V development',
-        'Enhanced understanding of women&apos;s economic empowerment impacts',
+        'Enhanced understanding of women\'s economic empowerment impacts',
         'Strengthened evidence base for future programming',
         'Improved program effectiveness across 14 countries'
       ],
@@ -272,73 +272,120 @@ export default function PortfolioPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {featuredProjects.map((project, index) => (
               <div key={index} className="group h-full">
-                <div className={`bg-gradient-to-br ${project.bgColor} rounded-2xl p-8 border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-full flex flex-col`}>
-                  {/* Project Header */}
-                  <div className="flex items-start justify-between mb-8">
-                    <div className="flex items-center">
-                      <div className={`w-16 h-16 bg-gradient-to-br ${project.color} rounded-2xl flex items-center justify-center mr-6 group-hover:scale-110 transition-transform shadow-lg`}>
-                        <project.icon className="h-8 w-8 text-white" />
+                <div className={`bg-white rounded-3xl border border-gray-200 hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 h-full flex flex-col overflow-hidden`}>
+                  
+                  {/* Enhanced Header with Gradient */}
+                  <div className={`bg-gradient-to-br ${project.color} p-8 text-white relative overflow-hidden`}>
+                    {/* Background Pattern */}
+                    <div className="absolute inset-0 opacity-10">
+                      <div className="absolute top-4 right-4 w-20 h-20 bg-white rounded-full"></div>
+                      <div className="absolute bottom-4 left-4 w-16 h-16 bg-white rounded-full"></div>
+                    </div>
+                    
+                    <div className="relative z-10">
+                      {/* Client & Duration */}
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                            <project.icon className="h-6 w-6 text-white" />
+                          </div>
+                          <div>
+                            <p className="text-white/90 text-sm font-medium">{project.client}</p>
+                            <p className="text-white/70 text-xs">{project.duration}</p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-3xl font-bold text-white mb-1">{project.stats.value}</div>
+                          <div className="text-white/80 text-xs">{project.stats.label}</div>
+                        </div>
+                      </div>
+                      
+                      {/* Project Title */}
+                      <h3 className="text-2xl font-bold text-white mb-3 leading-tight">{project.title}</h3>
+                    </div>
+                  </div>
+                  
+                  {/* Project Description Section */}
+                  <div className="px-8 py-6 bg-gray-50 border-b border-gray-100">
+                    <div className="flex items-start">
+                      <div className={`w-8 h-8 bg-gradient-to-br ${project.color} rounded-lg flex items-center justify-center mr-4 flex-shrink-0`}>
+                        <BarChart3 className="h-4 w-4 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-gray-800 transition-colors">{project.title}</h3>
-                        <p className={`font-semibold text-sm ${project.textColor}`}>{project.client}</p>
-                        <p className="text-gray-500 text-sm">{project.duration}</p>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-3">Project Overview</h4>
+                        <p className="text-gray-600 leading-relaxed text-sm">{project.challenge}</p>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <div className={`text-2xl font-bold ${project.textColor} mb-1`}>{project.stats.value}</div>
-                      <div className="text-xs text-gray-500">{project.stats.label}</div>
+                  </div>
+                  
+                  {/* Enhanced Content */}
+                  <div className="p-8 flex-grow">
+                    <div className="space-y-6">
+                      {/* My Role Section */}
+                      <div>
+                        <div className="flex items-center mb-4">
+                          <div className={`w-8 h-8 bg-gradient-to-br ${project.color} rounded-lg flex items-center justify-center mr-3`}>
+                            <Users className="h-4 w-4 text-white" />
+                          </div>
+                          <h4 className="text-lg font-semibold text-gray-900">My Role & Actions</h4>
+                        </div>
+                        <div className="space-y-3">
+                          {project.role.slice(0, 3).map((item, roleIndex) => (
+                            <div key={roleIndex} className="flex items-start">
+                              <div className={`w-1.5 h-1.5 bg-gradient-to-r ${project.color} rounded-full mr-3 mt-2 flex-shrink-0`}></div>
+                              <span className="text-sm text-gray-600 leading-relaxed">{item}</span>
+                            </div>
+                          ))}
+                          {project.role.length > 3 && (
+                            <div className="text-xs text-gray-500 italic">+{project.role.length - 3} additional responsibilities</div>
+                          )}
+                        </div>
+                      </div>
+                      
+                      {/* Impact Section */}
+                      <div>
+                        <div className="flex items-center mb-4">
+                          <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center mr-3">
+                            <TrendingUp className="h-4 w-4 text-white" />
+                          </div>
+                          <h4 className="text-lg font-semibold text-gray-900">Key Impact</h4>
+                        </div>
+                        <div className="space-y-3">
+                          {project.impact.slice(0, 3).map((item, impactIndex) => (
+                            <div key={impactIndex} className="flex items-start">
+                              <div className="w-1.5 h-1.5 bg-gradient-to-r from-green-500 to-green-600 rounded-full mr-3 mt-2 flex-shrink-0"></div>
+                              <span className="text-sm text-gray-600 leading-relaxed">{item}</span>
+                            </div>
+                          ))}
+                          {project.impact.length > 3 && (
+                            <div className="text-xs text-gray-500 italic">+{project.impact.length - 3} additional outcomes</div>
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </div>
                   
-                  {/* Project Content */}
-                  <div className="space-y-6 flex-grow">
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
-                        <div className={`w-2 h-2 bg-gradient-to-r ${project.color} rounded-full mr-3`}></div>
-                        The Challenge
-                      </h4>
-                      <p className="text-gray-600 leading-relaxed">{project.challenge}</p>
-                    </div>
-                    
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
-                        <div className={`w-2 h-2 bg-gradient-to-r ${project.color} rounded-full mr-3`}></div>
-                        My Role & Action
-                      </h4>
-                      <ul className="space-y-3">
-                        {project.role.map((item, roleIndex) => (
-                          <li key={roleIndex} className="flex items-start text-gray-600 group-hover:text-gray-800 transition-colors">
-                            <div className={`w-2 h-2 bg-gradient-to-r ${project.color} rounded-full mr-3 mt-2 flex-shrink-0`}></div>
-                            <span className="text-sm">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
-                        <div className={`w-2 h-2 bg-gradient-to-r ${project.color} rounded-full mr-3`}></div>
-                        The Impact
-                      </h4>
-                      <ul className="space-y-3">
-                        {project.impact.map((item, impactIndex) => (
-                          <li key={impactIndex} className="flex items-start text-gray-600 group-hover:text-gray-800 transition-colors">
-                            <div className="w-2 h-2 bg-gradient-to-r from-green-500 to-green-600 rounded-full mr-3 mt-2 flex-shrink-0"></div>
-                            <span className="text-sm">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  
-                  {/* Project Footer */}
-                  <div className="mt-8 pt-6 border-t border-gray-200">
+                  {/* Enhanced Footer */}
+                  <div className="px-8 py-6 bg-gray-50 border-t border-gray-100">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-500">Project Status</span>
+                      <div className="flex items-center space-x-3">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span className="text-sm font-medium text-gray-700">Active Project</span>
+                      </div>
                       <div className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span className="text-sm font-medium text-gray-700">Active/Completed</span>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <span className="text-xs text-gray-500">M&E Focus</span>
+                      </div>
+                    </div>
+                    
+                    {/* Progress Bar */}
+                    <div className="mt-4">
+                      <div className="flex justify-between text-xs text-gray-500 mb-2">
+                        <span>Project Progress</span>
+                        <span>85%</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div className={`bg-gradient-to-r ${project.color} h-2 rounded-full transition-all duration-1000`} style={{width: '85%'}}></div>
                       </div>
                     </div>
                   </div>
