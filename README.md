@@ -152,7 +152,7 @@ This project is licensed under the MIT License.
 ## 📞 Contact
 
 For questions about this portfolio website, contact:
-- Email: nhungnt102@gmail.com
+- Email: nhungconsultancy@gmail.com
 - LinkedIn: [Nhung Nguyen](https://www.linkedin.com/in/nhungnguyen7979/)
 
 ---

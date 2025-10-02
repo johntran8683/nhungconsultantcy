@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Mail, Phone, MapPin, Linkedin } from 'lucide-react'
+import { Mail, MapPin, Linkedin } from 'lucide-react'
 
 const Footer = () => {
   return (
@@ -13,11 +13,7 @@ const Footer = () => {
             <div className="space-y-2">
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-blue-400" />
-                <span className="text-gray-300">nhungnt102@gmail.com</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-blue-400" />
-                <span className="text-gray-300">+1-672-999-7979</span>
+                <span className="text-gray-300">nhungconsultancy@gmail.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-blue-400" />

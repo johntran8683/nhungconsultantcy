@@ -240,6 +240,10 @@ export default function ExpertisePage() {
                       height={512}
                       className="w-full h-full object-cover"
                       priority
+                      quality={85}
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                      sizes="(max-width: 768px) 80vw, (max-width: 1024px) 50vw, 28rem"
                     />
                     {/* Gloss overlay */}
                     <div className="pointer-events-none absolute -top-1/4 left-0 right-0 h-1/2 bg-gradient-to-b from-white/40 to-transparent rounded-full" />
@@ -566,7 +570,6 @@ export default function ExpertisePage() {
                     />
                   </div>
                   <h4 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">{client.name}</h4>
-                  <p className="text-gray-600 leading-relaxed">{client.description}</p>
                 </div>
               </div>
             ))}

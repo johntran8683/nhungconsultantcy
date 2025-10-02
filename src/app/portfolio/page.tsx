@@ -120,7 +120,7 @@ export default function PortfolioPage() {
       icon: FileText,
       type: 'Institutional Report',
       downloads: '5,500+ downloads',
-      title: 'A Retrospective of IFC&apos;s Implementation of the World Bank Group Gender Strategy',
+      title: 'A Retrospective of IFC\'s Implementation of the World Bank Group Gender Strategy',
       description: 'Lead author for context section and all results, data visualization and case studies. Widely used for the World Bank Group strategy development.',
       impact: 'Adopted as standard guidance for IFC upstream operations',
       featured: true
