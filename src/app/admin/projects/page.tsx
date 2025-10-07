@@ -1091,178 +1091,221 @@ function ProjectsSection() {
         </div>
       )}
 
-      {/* View Modal */}
+      {/* View Modal - Professional Design */}
       {showViewModal && viewingProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200" role="dialog" aria-modal="true">
-          <div className="w-full max-w-5xl max-h-[95vh] bg-white rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
-            {/* Modal Header */}
-            <div className="relative bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 px-8 py-6 text-white">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/90 via-blue-600/90 to-purple-600/90"></div>
-              <div className="relative flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  {(() => {
-                    const template = PROJECT_TEMPLATES.find(t => t.id === viewingProject.templateId) || PROJECT_TEMPLATES[0]
-                    const IconComponent = iconMap[template.icon as keyof typeof iconMap] || Building2
-                    return (
-                      <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/30">
-                        <IconComponent className="w-6 h-6" />
-                      </div>
-                    )
-                  })()}
-                  <div>
-                    <h2 className="text-2xl font-bold mb-1">{viewingProject.title}</h2>
-                    <p className="text-purple-100 text-sm">{viewingProject.client}</p>
-                    <div className="flex items-center gap-4 mt-2">
-                      <div className="flex items-center gap-2 text-xs">
-                        <Calendar className="w-3 h-3" />
-                        <span>{viewingProject.duration}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-xs">
-                        <span className="px-2 py-1 bg-white/20 rounded-full">
-                          Order #{viewingProject.sortOrder}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <button
-                  onClick={() => setShowViewModal(false)}
-                  className="w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 border border-white/30"
-                  aria-label="Close modal"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-
-            {/* Modal Content */}
-            <div className="overflow-y-auto max-h-[calc(95vh-200px)] bg-gray-50/30">
-              {/* Project Status Bar */}
-              <div className="bg-white border-b border-gray-100 px-8 py-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-semibold ${
-                      viewingProject.published 
-                        ? 'bg-green-100 text-green-800 border border-green-200' 
-                        : 'bg-orange-100 text-orange-800 border border-orange-200'
-                    }`}>
-                      {viewingProject.published ? (
-                        <>
-                          <CheckCircle className="w-4 h-4" />
-                          Published
-                        </>
-                      ) : (
-                        <>
-                          <Clock className="w-4 h-4" />
-                          Draft
-                        </>
-                      )}
-                    </span>
-                    <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-semibold ${
-                      viewingProject.status === 'ongoing'
-                        ? 'bg-blue-100 text-blue-800 border border-blue-200'
-                        : 'bg-gray-100 text-gray-800 border border-gray-200'
-                    }`}>
-                      {viewingProject.status === 'ongoing' ? (
-                        <>
-                          <TrendingUp className="w-4 h-4" />
-                          Ongoing ({viewingProject.progress}%)
-                        </>
-                      ) : (
-                        <>
-                          <CheckCircle className="w-4 h-4" />
-                          Completed
-                        </>
-                      )}
-                    </span>
-                  </div>
-                  <div className="text-sm text-gray-500">
-                    Created: {new Date(viewingProject.createdAt).toLocaleDateString()}
-                  </div>
-                </div>
-              </div>
-
-              {/* Project Details */}
-              <div className="p-8 space-y-8">
-                {/* Template & Stats */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="bg-white rounded-xl p-6 border border-gray-200">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Template & Design</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md p-4 animate-in fade-in duration-300" role="dialog" aria-modal="true">
+          <div className="w-full max-w-6xl max-h-[95vh] bg-white rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-400 border border-gray-100">
+            
+            {/* Enhanced Modal Header */}
+            <div className="relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-700"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-600/95 via-blue-600/95 to-indigo-700/95"></div>
+              <div className="relative px-8 py-8 text-white">
+                <div className="flex items-start justify-between">
+                  <div className="flex items-start gap-6">
                     {(() => {
                       const template = PROJECT_TEMPLATES.find(t => t.id === viewingProject.templateId) || PROJECT_TEMPLATES[0]
                       const IconComponent = iconMap[template.icon as keyof typeof iconMap] || Building2
                       return (
-                        <div className="flex items-center gap-4">
-                          <div className={`w-12 h-12 bg-gradient-to-br ${template.gradient} rounded-xl flex items-center justify-center`}>
-                            <IconComponent className="w-6 h-6 text-white" />
-                          </div>
-                          <div>
-                            <h4 className="font-semibold text-gray-900">{template.name}</h4>
-                            <p className="text-sm text-gray-600">{template.description}</p>
-                          </div>
+                        <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/30 shadow-lg">
+                          <IconComponent className="w-8 h-8" />
                         </div>
                       )
                     })()}
+                    <div className="flex-1">
+                      <h1 className="text-3xl font-bold mb-2 tracking-tight">{viewingProject.title}</h1>
+                      <div className="flex items-center gap-2 mb-4">
+                        <Building2 className="w-5 h-5 text-blue-200" />
+                        <span className="text-lg text-blue-100 font-medium">{viewingProject.client}</span>
+                      </div>
+                      <div className="flex flex-wrap items-center gap-4">
+                        <div className="flex items-center gap-2 px-3 py-1.5 bg-white/20 rounded-full">
+                          <Calendar className="w-4 h-4" />
+                          <span className="text-sm font-medium">{viewingProject.duration}</span>
+                        </div>
+                        <div className="flex items-center gap-2 px-3 py-1.5 bg-white/20 rounded-full">
+                          <span className="text-sm font-medium">Order #{viewingProject.sortOrder}</span>
+                        </div>
+                        <div className="text-sm text-blue-200">
+                          Created {new Date(viewingProject.createdAt).toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setShowViewModal(false)}
+                    className="w-12 h-12 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-2xl flex items-center justify-center transition-all duration-200 hover:scale-105 border border-white/30 shadow-lg group"
+                    aria-label="Close modal"
+                  >
+                    <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-200" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Enhanced Status Bar */}
+            <div className="bg-gradient-to-r from-gray-50 to-blue-50 border-b border-gray-200 px-8 py-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold shadow-sm ${
+                    viewingProject.published 
+                      ? 'bg-green-100 text-green-800 border border-green-200' 
+                      : 'bg-orange-100 text-orange-800 border border-orange-200'
+                  }`}>
+                    {viewingProject.published ? (
+                      <>
+                        <CheckCircle className="w-4 h-4" />
+                        Published
+                      </>
+                    ) : (
+                      <>
+                        <Clock className="w-4 h-4" />
+                        Draft
+                      </>
+                    )}
+                  </span>
+                  <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold shadow-sm ${
+                    viewingProject.status === 'ongoing'
+                      ? 'bg-blue-100 text-blue-800 border border-blue-200'
+                      : 'bg-gray-100 text-gray-800 border border-gray-200'
+                  }`}>
+                    {viewingProject.status === 'ongoing' ? (
+                      <>
+                        <TrendingUp className="w-4 h-4" />
+                        Ongoing ({viewingProject.progress}%)
+                      </>
+                    ) : (
+                      <>
+                        <CheckCircle className="w-4 h-4" />
+                        Completed
+                      </>
+                    )}
+                  </span>
+                </div>
+                <div className="text-sm text-gray-600 font-medium">
+                  Project ID: {viewingProject.id.slice(-8).toUpperCase()}
+                </div>
+              </div>
+            </div>
+
+            {/* Enhanced Modal Content */}
+            <div className="overflow-y-auto max-h-[calc(95vh-280px)] bg-gray-50">
+              <div className="p-8 space-y-8">
+                
+                {/* Template & Stats Cards */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                  <div className="lg:col-span-2">
+                    <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                      <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                        <div className="w-2 h-8 bg-gradient-to-b from-purple-500 to-blue-500 rounded-full"></div>
+                        Template & Design
+                      </h3>
+                      {(() => {
+                        const template = PROJECT_TEMPLATES.find(t => t.id === viewingProject.templateId) || PROJECT_TEMPLATES[0]
+                        const IconComponent = iconMap[template.icon as keyof typeof iconMap] || Building2
+                        return (
+                          <div className="flex items-center gap-6">
+                            <div className={`w-16 h-16 bg-gradient-to-br ${template.gradient} rounded-2xl flex items-center justify-center shadow-lg`}>
+                              <IconComponent className="w-8 h-8 text-white" />
+                            </div>
+                            <div>
+                              <h4 className="text-lg font-bold text-gray-900 mb-1">{template.name}</h4>
+                              <p className="text-gray-600 leading-relaxed">{template.description}</p>
+                            </div>
+                          </div>
+                        )
+                      })()}
+                    </div>
                   </div>
                   
-                  <div className="bg-white rounded-xl p-6 border border-gray-200">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Project Stats</h3>
+                  <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                    <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                      <div className="w-2 h-8 bg-gradient-to-b from-green-500 to-emerald-500 rounded-full"></div>
+                      Project Stats
+                    </h3>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-purple-600 mb-1">{viewingProject.statsValue}</div>
-                      <div className="text-gray-600">{viewingProject.statsLabel}</div>
+                      <div className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">
+                        {viewingProject.statsValue}
+                      </div>
+                      <div className="text-gray-600 font-medium">{viewingProject.statsLabel}</div>
                     </div>
                   </div>
                 </div>
 
                 {/* Project Overview */}
-                <div className="bg-white rounded-xl p-6 border border-gray-200">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4">Project Overview</h3>
-                  <p className="text-gray-700 leading-relaxed">{viewingProject.overview}</p>
+                <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                    <div className="w-2 h-8 bg-gradient-to-b from-blue-500 to-indigo-500 rounded-full"></div>
+                    Project Overview
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed text-lg">{viewingProject.overview}</p>
                 </div>
 
                 {/* Role & Impact Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {/* My Role & Actions */}
-                  <div className="bg-white rounded-xl p-6 border border-gray-200">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-4">My Role & Actions</h3>
-                    <ul className="space-y-3">
+                  <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+                    <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                      <div className="w-2 h-8 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full"></div>
+                      My Role & Actions
+                    </h3>
+                    <ul className="space-y-4">
                       {viewingProject.role.map((item, index) => (
-                        <li key={index} className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-700">{item}</span>
+                        <li key={index} className="flex items-start gap-4">
+                          <div className="w-6 h-6 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-white text-xs font-bold">{index + 1}</span>
+                          </div>
+                          <span className="text-gray-700 leading-relaxed">{item}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
                   {/* Key Impact */}
-                  <div className="bg-white rounded-xl p-6 border border-gray-200">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Key Impact</h3>
-                    <ul className="space-y-3">
+                  <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+                    <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                      <div className="w-2 h-8 bg-gradient-to-b from-green-500 to-emerald-500 rounded-full"></div>
+                      Key Impact
+                    </h3>
+                    <ul className="space-y-4">
                       {viewingProject.impact.map((item, index) => (
-                        <li key={index} className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-700">{item}</span>
+                        <li key={index} className="flex items-start gap-4">
+                          <div className="w-6 h-6 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <CheckCircle className="w-3 h-3 text-white" />
+                          </div>
+                          <span className="text-gray-700 leading-relaxed">{item}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 </div>
 
-                {/* Progress Bar (if ongoing) */}
+                {/* Enhanced Progress Bar (if ongoing) */}
                 {viewingProject.status === 'ongoing' && (
-                  <div className="bg-white rounded-xl p-6 border border-gray-200">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Project Progress</h3>
-                    <div className="space-y-2">
-                      <div className="flex justify-between text-sm text-gray-600">
-                        <span>Progress</span>
-                        <span>{viewingProject.progress}%</span>
+                  <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+                    <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                      <div className="w-2 h-8 bg-gradient-to-b from-blue-500 to-cyan-500 rounded-full"></div>
+                      Project Progress
+                    </h3>
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center">
+                        <span className="text-gray-700 font-medium">Progress</span>
+                        <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                          {viewingProject.progress}%
+                        </span>
                       </div>
-                      <div className="w-full bg-gray-200 rounded-full h-3">
-                        <div 
-                          className="bg-gradient-to-r from-purple-500 to-purple-600 h-3 rounded-full transition-all duration-1000"
-                          style={{width: `${viewingProject.progress}%`}}
-                        ></div>
+                      <div className="relative">
+                        <div className="w-full bg-gray-200 rounded-full h-4 shadow-inner">
+                          <div 
+                            className="bg-gradient-to-r from-blue-500 via-purple-500 to-purple-600 h-4 rounded-full transition-all duration-1500 ease-out shadow-lg"
+                            style={{width: `${viewingProject.progress}%`}}
+                          ></div>
+                        </div>
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 animate-pulse"></div>
                       </div>
                     </div>
                   </div>
@@ -1270,11 +1313,17 @@ function ProjectsSection() {
               </div>
             </div>
 
-            {/* Modal Footer */}
-            <div className="bg-white px-8 py-6 border-t border-gray-100 shadow-lg">
+            {/* Enhanced Modal Footer */}
+            <div className="bg-white px-8 py-6 border-t border-gray-200 shadow-lg">
               <div className="flex items-center justify-between">
                 <div className="text-sm text-gray-500">
-                  Project ID: {viewingProject.id.slice(-8)}
+                  Last updated: {new Date(viewingProject.updatedAt).toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })}
                 </div>
                 <div className="flex items-center gap-4">
                   <button
@@ -1282,16 +1331,16 @@ function ProjectsSection() {
                       setShowViewModal(false)
                       startEdit(viewingProject)
                     }}
-                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-lg hover:from-purple-700 hover:to-purple-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 font-semibold"
+                    className="flex items-center gap-3 px-8 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-xl hover:from-purple-700 hover:to-purple-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 font-semibold"
                   >
                     <Edit className="w-4 h-4" />
                     Edit Project
                   </button>
                   <button 
                     onClick={() => setShowViewModal(false)}
-                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gray-600 to-gray-700 text-white rounded-lg hover:from-gray-700 hover:to-gray-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 font-semibold"
+                    className="flex items-center gap-3 px-8 py-3 bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-xl hover:from-gray-600 hover:to-gray-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 font-semibold"
                   >
-                    <span>×</span>
+                    <X className="w-4 h-4" />
                     Close
                   </button>
                 </div>

@@ -307,15 +307,12 @@ export default function PortfolioPage() {
                           <h4 className="text-lg font-semibold text-gray-900">My Role & Actions</h4>
                         </div>
                         <div className="space-y-3">
-                          {project.role.slice(0, 3).map((item, roleIndex) => (
+                          {project.role.map((item, roleIndex) => (
                             <div key={roleIndex} className="flex items-start">
                               <div className={`w-1.5 h-1.5 bg-gradient-to-r ${project.color} rounded-full mr-3 mt-2 flex-shrink-0`}></div>
                               <span className="text-sm text-gray-600 leading-relaxed">{item}</span>
                             </div>
                           ))}
-                          {project.role.length > 3 && (
-                            <div className="text-xs text-gray-500 italic">+{project.role.length - 3} additional responsibilities</div>
-                          )}
                         </div>
                       </div>
                       
@@ -328,15 +325,12 @@ export default function PortfolioPage() {
                           <h4 className="text-lg font-semibold text-gray-900">Key Impact</h4>
                         </div>
                         <div className="space-y-3">
-                          {project.impact.slice(0, 3).map((item, impactIndex) => (
+                          {project.impact.map((item, impactIndex) => (
                             <div key={impactIndex} className="flex items-start">
                               <div className="w-1.5 h-1.5 bg-gradient-to-r from-green-500 to-green-600 rounded-full mr-3 mt-2 flex-shrink-0"></div>
                               <span className="text-sm text-gray-600 leading-relaxed">{item}</span>
                             </div>
                           ))}
-                          {project.impact.length > 3 && (
-                            <div className="text-xs text-gray-500 italic">+{project.impact.length - 3} additional outcomes</div>
-                          )}
                         </div>
                       </div>
                     </div>
