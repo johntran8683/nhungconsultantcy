@@ -1,0 +1,83 @@
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15
+    container_name: nhung-postgres-dev
+    environment:
+      POSTGRES_DB: nhung
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./prisma/migrations:/docker-entrypoint-initdb.d
+    networks:
+      - nhung-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Next.js Application (Development)
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: nhung-app-dev
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
+      - NEXTAUTH_URL=http://localhost:3000
+      - NEXT_PUBLIC_APP_URL=http://localhost:3000
+      - NEXTAUTH_SECRET=dev-secret-please-change
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/nhung?schema=public
+      - EMAIL_PROVIDER=brevo      
+      - EMAIL_FROM="Nhung Consultancy <contact@nhungconsultancy.com>"
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - nhung-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Prisma Studio (Optional - for database management)
+  prisma-studio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: nhung-prisma-studio
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/nhung?schema=public
+    ports:
+      - "5555:5555"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - nhung-network
+    command: npx prisma studio --port 5555
+    profiles:
+      - tools
+
+volumes:
+  postgres_data:
+
+networks:
+  nhung-network:
+    driver: bridge

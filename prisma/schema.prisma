@@ -1,0 +1,245 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../src/generated/prisma"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                  String   @id @default(cuid())
+  email               String   @unique
+  name                String?
+  image               String?
+  passwordHash        String
+  mustChangePassword  Boolean  @default(true)
+  role                String   @default("admin")
+
+  // NextAuth relations
+  accounts            Account[]
+  sessions            Session[]
+
+  // Password reset tokens relation
+  passwordResetTokens PasswordResetToken[]
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  oauth_token_secret String?
+  oauth_token        String?
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+// Singleton site settings (branding, email sender, contact)
+model SiteSetting {
+  id            String   @id @default("default")
+  siteTitle     String   @default("Nhung Consultancy")
+  primaryColor  String   @default("#2563eb")
+  senderName    String   @default("Nhung Consultancy")
+  senderEmail   String   @default("contact@nhungconsultancy.com")
+  publicEmail   String?  // contact email displayed on site
+  phone         String?
+  location      String?
+  linkedinUrl   String?
+  websiteUrl    String?
+  logoPath      String?
+  faviconPath   String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// Homepage content - Draft vs Published
+model HomepageDraft {
+  id                 String   @id @default(cuid())
+  headline           String
+  subheadline        String?
+  primaryCtaText     String?
+  primaryCtaUrl      String?
+  secondaryCtaText   String?
+  secondaryCtaUrl    String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model HomepagePublished {
+  id                 String   @id @default(cuid())
+  headline           String
+  subheadline        String?
+  primaryCtaText     String?
+  primaryCtaUrl      String?
+  secondaryCtaText   String?
+  secondaryCtaUrl    String?
+  publishedAt        DateTime @default(now())
+}
+
+// Metrics - Draft vs Published
+model MetricsDraft {
+  id                 String   @id @default(cuid())
+  yearsExperience    Int      @default(0)
+  projectsLed        Int      @default(0)
+  countries          Int      @default(0)
+  portfolioCurrency  String   @default("USD")
+  portfolioValue     BigInt   @default(0)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model MetricsPublished {
+  id                 String   @id @default(cuid())
+  yearsExperience    Int
+  projectsLed        Int
+  countries          Int
+  portfolioCurrency  String
+  portfolioValue     BigInt
+  publishedAt        DateTime @default(now())
+}
+
+// Partners - Draft vs Published
+model PartnerDraft {
+  id         String  @id @default(cuid())
+  name       String
+  url        String?
+  logoPath   String?
+  sortOrder  Int      @default(0)
+  hidden     Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model PartnerPublished {
+  id         String  @id @default(cuid())
+  name       String
+  url        String?
+  logoPath   String?
+  sortOrder  Int      @default(0)
+  publishedAt DateTime @default(now())
+}
+
+// Testimonials - Draft vs Published
+model TestimonialDraft {
+  id         String  @id @default(cuid())
+  quote      String
+  author     String
+  role       String?
+  avatarPath String?
+  sortOrder  Int      @default(0)
+  hidden     Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model TestimonialPublished {
+  id         String  @id @default(cuid())
+  quote      String
+  author     String
+  role       String?
+  avatarPath String?
+  sortOrder  Int      @default(0)
+  publishedAt DateTime @default(now())
+}
+
+// Uploaded assets (local dev only for now)
+model Asset {
+  id        String   @id @default(cuid())
+  path      String   @unique
+  mimeType  String
+  size      Int
+  createdAt DateTime @default(now())
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String
+  action    String
+  entity    String
+  entityId  String?
+  createdAt DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  budget       String?
+  organization String?
+  phone        String?
+  projectType  String?
+  timeline     String?
+  subject   String?
+  message   String
+  status    String   @default("new") // new | read
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Projects for portfolio page
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  client      String
+  duration    String
+  overview    String   // Project overview description
+  role        String[] // JSON array of role items
+  impact      String[] // JSON array of impact items
+  templateId  String   // References predefined template
+  statsValue  String
+  statsLabel  String
+  status      String   @default("ongoing") // "ongoing" or "completed"
+  progress    Int?     // Progress percentage (0-100, null if completed)
+  sortOrder   Int      @default(0)
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

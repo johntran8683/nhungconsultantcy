@@ -1,3 +1,6 @@
+'use client'
+
+import { useState, useEffect } from 'react'
 import { 
   Building, 
   TrendingUp, 
@@ -10,110 +13,58 @@ import {
   Shield
 } from 'lucide-react'
 
-export const metadata = {
-  title: 'Work & Impact - Nhung Nguyen',
-  description: 'Featured projects, case studies, and publications showcasing measurable impact in international development and gender inclusion.',
+// Icon mapping for dynamic icons
+const iconMap = {
+  Building,
+  TrendingUp,
+  Globe,
+  GraduationCap,
+  FileText,
+  BarChart3,
+  Users,
+  Book,
+  Shield
+}
+
+interface Project {
+  id: string
+  title: string
+  client: string
+  duration: string
+  challenge: string
+  role: string[]
+  impact: string[]
+  color: string
+  bgColor: string
+  textColor: string
+  iconBg: string
+  icon: string
+  stats: { value: string; label: string }
+  status: string
+  progress: number
 }
 
 export default function PortfolioPage() {
-  const featuredProjects = [
-    {
-      icon: Building,
-      title: 'Southeast Asia Energy Transition Partnership',
-      client: 'UNOPS',
-      duration: 'July 2024 - Present',
-      challenge: 'Lead M&E activities for 50+ energy transition programs across Southeast Asia with $30M+ in funding, ensuring gender-responsive monitoring and data-driven programming.',
-      role: [
-        'Designed and implemented gender-responsive monitoring frameworks',
-        'Led data collection and validation of 50 result-based monitoring frameworks quarterly',
-        'Collaborated with multiple stakeholders to strengthen data-driven programming',
-        'Produced annual/semiannual reports and data visualization for 12 funders'
-      ],
-      impact: [
-        '100% compliance with donor reporting requirements',
-        'Enhanced gender integration across all 50+ programs',
-        'Improved data quality and data-driven decision making',
-        'Strengthened stakeholder engagement and collaboration'
-      ],
-      color: 'from-blue-500 to-blue-600',
-      bgColor: 'bg-blue-50',
-      textColor: 'text-blue-700',
-      iconBg: 'bg-blue-100',
-      stats: { value: '$30M+', label: 'Portfolio Value' }
-    },
-    {
-      icon: TrendingUp,
-      title: 'Pacific Private Sector Development Initiative',
-      client: 'Asian Development Bank',
-      duration: 'August 2024 - Present',
-      challenge: 'Lead multiple evaluations of women\'s economic empowerment initiatives across 14 Pacific countries for an 18-year, $88M technical assistance program.',
-      role: [
-        'Developed comprehensive evaluation tools and methodologies',
-        'Collected and analyzed data from multiple Pacific countries',
-        'Drafted detailed case studies and evaluation reports',
-        'Presented findings and recommendations to senior management'
-      ],
-      impact: [
-        'Informed strategic decisions for PSDI Phase V development',
-        'Enhanced understanding of women\'s economic empowerment impacts',
-        'Strengthened evidence base for future programming',
-        'Improved program effectiveness across 14 countries'
-      ],
-      color: 'from-purple-500 to-purple-600',
-      bgColor: 'bg-purple-50',
-      textColor: 'text-purple-700',
-      iconBg: 'bg-purple-100',
-      stats: { value: '$88M', label: 'Program Value' }
-    },
-    {
-      icon: Globe,
-      title: 'IFC Gender Strategy Implementation',
-      client: 'International Finance Corporation',
-      duration: 'July 2018 - June 2024',
-      challenge: 'Ensure 100% quality compliance with World Bank Group standards across 100-120 gender-flagged advisory projects annually, spanning multiple industries and regions.',
-      role: [
-        'Advised operational teams on project design and M&E frameworks',
-        'Conducted quality assurance reviews of project governance documents',
-        'Delivered capacity building training for clients and staff',
-        'Managed global data collection platform serving 100+ surveys'
-      ],
-      impact: [
-        '100% quality compliance rate maintained consistently',
-        'Enhanced project governance across 30+ gender advisory programs',
-        'Improved client satisfaction and program effectiveness',
-        'Strengthened IFC&apos;s gender inclusion capabilities globally'
-      ],
-      color: 'from-green-500 to-green-600',
-      bgColor: 'bg-green-50',
-      textColor: 'text-green-700',
-      iconBg: 'bg-green-100',
-      stats: { value: '100%', label: 'Compliance Rate' }
-    },
-    {
-      icon: GraduationCap,
-      title: 'Vietnam Development Impact Evaluations',
-      client: 'Mekong Development Research Institute',
-      duration: 'April 2014 - May 2018',
-      challenge: 'Lead 6-9 donor-funded impact evaluation projects annually on diverse development topics including poverty reduction, education, agriculture, and gender.',
-      role: [
-        'Managed 20+ large-scale surveys with sample sizes up to 30,000',
-        'Developed technical and financial proposals for competitive bidding',
-        'Led impact evaluation projects with budgets up to $2.5M',
-        'Managed partnerships with donors, NGOs, and government agencies'
-      ],
-      impact: [
-        'Won 8-10 new projects annually worth over $2M total',
-        'Achieved excellent performance ratings from all clients',
-        'Enhanced evidence base for development policy in Vietnam',
-        'Strengthened local research capacity and partnerships'
-      ],
-      color: 'from-orange-500 to-orange-600',
-      bgColor: 'bg-orange-50',
-      textColor: 'text-orange-700',
-      iconBg: 'bg-orange-100',
-      stats: { value: '30K+', label: 'Survey Sample' }
+  const [featuredProjects, setFeaturedProjects] = useState<Project[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('/api/portfolio/projects')
+        const data = await response.json()
+        setFeaturedProjects(data.projects || [])
+      } catch (error) {
+        console.error('Error fetching projects:', error)
+        // Fallback to empty array if API fails
+        setFeaturedProjects([])
+      } finally {
+        setLoading(false)
+      }
     }
-  ]
+
+    fetchProjects()
+  }, [])
 
   const publications = [
     {
@@ -270,8 +221,34 @@ export default function PortfolioPage() {
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {featuredProjects.map((project, index) => (
-              <div key={index} className="group h-full">
+            {loading ? (
+              // Loading skeleton
+              <>
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="group h-full">
+                    <div className="bg-white rounded-3xl border border-gray-200 h-full flex flex-col overflow-hidden animate-pulse">
+                      <div className="bg-gray-300 h-48"></div>
+                      <div className="p-8 space-y-4">
+                        <div className="bg-gray-300 h-4 rounded w-3/4"></div>
+                        <div className="bg-gray-300 h-4 rounded w-1/2"></div>
+                        <div className="bg-gray-300 h-20 rounded"></div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </>
+            ) : featuredProjects.length === 0 ? (
+              // Empty state
+              <div className="col-span-2 text-center py-16">
+                <Building className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-gray-600 mb-2">No Projects Available</h3>
+                <p className="text-gray-500">Featured projects will appear here once they are published.</p>
+              </div>
+            ) : (
+              featuredProjects.map((project, index) => {
+                const IconComponent = iconMap[project.icon as keyof typeof iconMap] || Building
+                return (
+                  <div key={project.id || index} className="group h-full">
                 <div className={`bg-white rounded-3xl border border-gray-200 hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 h-full flex flex-col overflow-hidden`}>
                   
                   {/* Enhanced Header with Gradient */}
@@ -287,7 +264,7 @@ export default function PortfolioPage() {
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center space-x-3">
                           <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                            <project.icon className="h-6 w-6 text-white" />
+                            <IconComponent className="h-6 w-6 text-white" />
                           </div>
                           <div>
                             <p className="text-white/90 text-sm font-medium">{project.client}</p>
@@ -369,8 +346,10 @@ export default function PortfolioPage() {
                   <div className="px-8 py-6 bg-gray-50 border-t border-gray-100">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        <span className="text-sm font-medium text-gray-700">Active Project</span>
+                        <div className={`w-2 h-2 rounded-full ${project.status === 'ongoing' ? 'bg-green-500 animate-pulse' : 'bg-blue-500'}`}></div>
+                        <span className="text-sm font-medium text-gray-700">
+                          {project.status === 'ongoing' ? 'Active Project' : 'Completed Project'}
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
@@ -382,16 +361,18 @@ export default function PortfolioPage() {
                     <div className="mt-4">
                       <div className="flex justify-between text-xs text-gray-500 mb-2">
                         <span>Project Progress</span>
-                        <span>85%</span>
+                        <span>{project.progress}%</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className={`bg-gradient-to-r ${project.color} h-2 rounded-full transition-all duration-1000`} style={{width: '85%'}}></div>
+                        <div className={`bg-gradient-to-r ${project.color} h-2 rounded-full transition-all duration-1000`} style={{width: `${project.progress}%`}}></div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            ))}
+                )
+              })
+            )}
           </div>
         </div>
       </section>
